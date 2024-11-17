@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block metadescription %}
+    TEAOLOGY EXPENSES
+{% endblock %}
+
+{% block title %}
+    PRODUCTS
+{% endblock %}
+
+{% block content %}
+
+  <!-- expenses/templates/expenses/salary_list.html -->
+
+    <h1>Salary Payments</h1>
+    <table class="table">
+        <tr>
+            <th>Employee</th>
+            <th>Amount</th>
+            <th>Paid From</th>
+            <th>Paid To</th>
+            <th>Date</th>
+        </tr>
+        {% for salary in salaries %}
+        <tr>
+            <td>{{ salary.employee.name }}</td>
+            <td>{{ salary.amount }}</td>
+            <td>{{ salary.paid_from }}</td>
+            <td>{{ salary.paid_to }}</td>
+            <td>{{ salary.date }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+
+{%endblock%}

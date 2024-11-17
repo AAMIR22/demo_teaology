@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block metadescription %}
+    TEAOLOGY EXPENSES
+{% endblock %}
+
+{% block title %}
+    PRODUCTS
+{% endblock %}
+
+{% block content %}
+<!-- expenses/templates/expenses/employee_register.html -->
+
+    <h1>Employee Registration</h1>
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Salary Type</th>
+            <th>Salary Amount</th>
+            <th>Advance Payment</th>
+        </tr>
+        {% for employee in employees %}
+        <tr>
+            <td>{{ employee.name }}</td>
+            <td>{{ employee.position }}</td>
+            <td>{{ employee.salary_type }}</td>
+            <td>{{ employee.salary_amount }}</td>
+            <td>{{ employee.advance_payment }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+{%endblock%}

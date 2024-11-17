@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block metadescription %}
+    TEAOLOGY EXPENSES
+{% endblock %}
+
+{% block title %}
+    PRODUCTS
+{% endblock %}
+
+{% block content %}
+
+<!-- expenses/templates/expenses/add_purchase.html -->
+
+    <h1>Add Purchase</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="vendor">Vendor:</label>
+        <select name="vendor" id="vendor">
+            {% for vendor in vendors %}
+                <option value="{{ vendor.id }}">{{ vendor.name }}</option>
+            {% endfor %}
+        </select><br>
+        <label for="item">Item:</label>
+        <input type="text" name="item" id="item"><br>
+        <label for="amount">Amount:</label>
+        <input type="number" step="0.01" name="amount" id="amount"><br>
+        <label for="date">Date:</label>
+        <input type="date" name="date" id="date"><br>
+        <button type="submit">Add Purchase</button>
+    </form>
+
+
+{%endblock%}

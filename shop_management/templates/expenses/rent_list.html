@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block metadescription %}
+    TEAOLOGY EXPENSES
+{% endblock %}
+
+{% block title %}
+    PRODUCTS
+{% endblock %}
+
+{% block content %}
+
+ <!-- expenses/templates/expenses/rent_list.html -->
+
+    <h1>Rent Payments</h1>
+    <table class="table">
+        <tr>
+            <th>Amount</th>
+            <th>Date From</th>
+            <th>Date To</th>
+            <th>Paid Status</th>
+        </tr>
+        {% for rent in rents %}
+        <tr>
+            <td>{{ rent.amount }}</td>
+            <td>{{ rent.date_from }}</td>
+            <td>{{ rent.date_to }}</td>
+            <td>{{ rent.paid_status }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{%endblock%}

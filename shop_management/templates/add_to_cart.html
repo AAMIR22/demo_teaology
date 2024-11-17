@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block metadescription %}
+    TEAOLOGY PRODUCTS
+{% endblock %}
+
+{% block title %}
+    PRODUCTS
+{% endblock %}
+
+{% block content %}
+<div style="padding:50px 2px;">
+<h1>SELECTED : {{ product.name }} </h1>
+<form method="post" style="padding:20px 2px;">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary btn-icon"><img src="{% static 'img/basic_img/cart logo.png' %}"> Add to Cart </button>
+</form>
+
+</div>
+{%endblock%}

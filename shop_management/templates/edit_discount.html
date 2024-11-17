@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block metadescription %}
+    TEAOLOGY SALES LIST PERFECT BLENDER FOR TEA
+{% endblock %}
+
+{% block title %}
+   TODAY'S SALES
+{% endblock %}
+
+{% block content %}
+<h1>Edit Discount for Sale ID: {{ sale.id }}</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ discount_form.as_p }}
+    <button type="submit">Save Changes</button>
+</form>
+<a href="{% url 'catalogue:sale_details_view' sale.id %}">Back to Sale Details</a>
+
+{% endblock %}

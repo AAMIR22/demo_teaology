@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block metadescription %}
+    TEAOLOGY EXPENSES
+{% endblock %}
+
+{% block title %}
+    PRODUCTS
+{% endblock %}
+
+{% block content %}
+
+<!-- expenses/templates/expenses/equipment_list.html -->
+
+    <h1>Equipment Expenses</h1>
+    <table>
+        <tr>
+            <th>Description</th>
+            <th>Amount</th>
+            <th>Date</th>
+        </tr>
+        {% for expense in expenses %}
+        <tr>
+            <td>{{ expense.description }}</td>
+            <td>{{ expense.amount }}</td>
+            <td>{{ expense.date }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+{%endblock%}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block metadescription %}
+    TEAOLOGY SALES LIST PERFECT BLENDER FOR TEA
+{% endblock %}
+
+{% block title %}
+   TODAY'S SALES
+{% endblock %}
+
+{% block content %}
+<h1>Sales Details</h1>
+<table class="table">
+    <tr>
+        <th>Sale ID</th>
+        <th>Customer</th>
+        <th>Total Price</th>
+        <th>Date</th>
+        <th>Actions</th>
+    </tr>
+    {% for sale in sales %}
+    <tr>
+        <td><a href="{% url 'catalogue:sale_details_view' sale.id %}">{{ sale.id }}</a></td>
+        <td>{% if sale.cart.customer %}{{ sale.cart.customer.name }}{% else %}Anonymous{% endif %}</td>
+        <td>{{ sale.total_price }}</td>
+        <td><span class="utc-time" data-utc="{{ sale.date |date:'c' }}"></span></td>
+        <td><a href="{% url 'catalogue:edit_sale' sale.id %}">Edit</a></td>
+    </tr>
+    {% endfor %}
+</table>
+<a href="{% url 'catalogue:category_list' %}">Back to Category</a>
+<a href="{% url 'catalogue:download_sales_data' %}">Download data</a>
+<br>
+<br>
+<br>
+
+
+{% endblock %}

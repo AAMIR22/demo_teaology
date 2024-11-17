@@ -1,0 +1,73 @@
+{% extends 'navbar_summary.html' %}
+{% load static %}
+
+{% block metadescription %}
+    TEAOLOGY PERFECT BLENDER FOR TEA
+{% endblock %}
+
+{% block title %}
+   TODAY'S SALES
+{% endblock %}
+
+{% block content %}
+
+<h1>Sale Summary</h1>
+
+<div class="container mt-5">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Bill No.  {{ sale.id }}</h2>
+                    </div>
+                    <div class="card-body">
+                        <h5 style="display: inline-block; margin-right: 10px;" class="card-title">Client Name: {% if sale.cart.customer %}
+    {{ sale.cart.customer.name }}
+{% else %}
+    Anonymous
+{% endif %}</h5>
+                        <p class="card-text">Address</p>
+                        <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Quantity</th>
+                                    <th  style="text-align:right">Price</th>
+                                    <th  style="text-align:right">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for item in item %}
+                                <tr>
+                                    <td>{{ item.product.name }}</td>
+                                    <td>{{ item.quantity }}</td>
+                                    <td  style="text-align:right">{{ item.product.price }}</td>
+                                    <td  style="text-align:right">{{ item.total_price }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td colspan="3">Subtotal</td>
+                                    <td  style="text-align:right">{{sale.total_price|add:sale.cart.discount|floatformat:2 }}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">Discount</td>
+                                    <td  style="text-align:right">
+                                        {{sale.cart.discount}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">Total</td>
+                                    <td  style="text-align:right">{{sale.total_price}}</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

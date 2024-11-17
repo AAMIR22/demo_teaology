@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block metadescription %}
+    TEAOLOGY EXPENSES
+{% endblock %}
+
+{% block title %}
+    PRODUCTS
+{% endblock %}
+
+{% block content %}
+
+ <!-- expenses/templates/expenses/electricity_list.html -->
+
+    <h1>Electricity Bills</h1>
+    <table class="table">
+        <tr>
+            <th>Amount</th>
+            <th>Due Date</th>
+            <th>Paid Status</th>
+            <th>Date From</th>
+            <th>Date To</th>
+        </tr>
+        {% for bill in bills %}
+        <tr>
+            <td>{{ bill.amount }}</td>
+            <td>{{ bill.due_date }}</td>
+            <td>{{ bill.paid_status }}</td>
+            <td>{{ bill.date_from }}</td>
+            <td>{{ bill.date_to }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+{%endblock%}

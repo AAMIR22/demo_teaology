@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block metadescription %}
+    TEAOLOGY PRODUCTS
+{% endblock %}
+
+{% block title %}
+    PRODUCTS
+{% endblock %}
+
+{% block content %}
+
+
+
+
+<div class="container-fluid">
+    <button type="button" class="btn btn-light">
+        <b>Category : {{ category.name }} </b><span class="badge bg-secondary"></span>
+</button>
+
+    <div class="row">
+        {% for product in products %}
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2" style="padding:1px;">
+            <div class="card-group">
+                <a href="{% url 'catalogue:add_to_cart' product.id %}" class="card card-border-green text-center text-white bg-dark fixed-ratio-lg fixed-ratio-md fixed-ratio-xs">
+                    {% if product.image %}
+                        <img class="card-img-top" src="{{ product.image.url }}" alt="{{ category.name }}">
+                    {% elif product.category.name == "TEA" %}
+                        <img src="{% static 'img/basic_img/Tea no image.png' %}" class="card-img-top" alt="No image available">
+                    {%else%}
+                        <img src="{% static 'img/basic_img/add image.jpg' %}" class="card-img-top" alt="No image available">
+                    {% endif %}
+
+                        <div class="card-footer">
+                            <h5 class="btn btn-outline-warning">{{ product.name }}<br>{{ product.price }}</h5>
+                        </div>
+
+                </a>
+            </div>
+        </div>
+        {%endfor%}
+    </div>
+</div>
+
+{%endblock%}

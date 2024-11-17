@@ -1,0 +1,46 @@
+
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-light ">
+  <div class="container-fluid">
+<!--USERNAME-->
+      <a class="navbar-brand" href="{% url 'catalogue:category_list' %}"> <img src="{%static 'img/Logo.jpg'%}" alt="Logo" width="70" height="70"> </a>
+      <a class="navbar-brand btn btn-warning btn-icon mobile-link" href="{% url 'catalogue:view_cart' %}"> <img src="{% static 'img/basic_img/cart logo.png' %}"> Cart &nbsp;</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+
+<!--NAVIGATION OPTIONS-->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" href="{% url 'catalogue:category_list' %}">PRODUCTS</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="{% url 'catalogue:view_cart' %}">CART</a>
+        </li>
+        {% if user.is_authenticated %}
+
+        <li class="nav-item">
+          <a class="nav-link active" href="{% url 'catalogue:sales_details' %}">TOTAL SALES</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/admin/">ADMIN</a>
+        </li>
+        {%endif%}
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'expenses:expense_list' %}">EXPENSE</a>
+        </li>
+      </ul>
+
+
+
+      <!--<form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>-->
+    </div>
+  </div>
+</nav>

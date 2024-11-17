@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block metadescription %}
+    TEAOLOGY PRODUCTS
+{% endblock %}
+
+{% block title %}
+    PRODUCTS
+{% endblock %}
+
+{% block content %}
+
+
+
+    <h5 style="float: right;display: inline-block; margin-right: 10px;"><a class="btn btn-primary" href="{% url 'catalogue:checkout' %}">Checkout</a></h5>
+
+<div class="container mt-5">
+        <h1>Cart Items</h1>
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Customer id: </h2>
+                    </div>
+                    <div class="card-body">
+                        <h5 style="display: inline-block; margin-right: 10px;" class="card-title">Client Name</h5>
+                        <h5 style="float: right;display: inline-block; margin-right: 10px;"><a  class="btn btn-secondary" href="{% url 'catalogue:category_list' %}">Add Items +   </a></h5>
+                        <p class="card-text">Address</p>
+                        <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Quantity</th>
+                                    <th  style="text-align:right">Price</th>
+                                    <th  style="text-align:right">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for item in cart.items.all %}
+                                <tr>
+                                    <td>{{ item.product.name }}</td>
+                                    <td>{{ item.quantity }}</td>
+                                    <td  style="text-align:right">{{ item.product.price }}</td>
+                                    <td  style="text-align:right">{{ item.total_price }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td colspan="3">Subtotal</td>
+                                    <td  style="text-align:right">{{cart.total_price|add:cart.discount|floatformat:2 }}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">Discount</td>
+                                    <td  style="text-align:right">
+                                        <form method="post">
+                                            {% csrf_token %}
+                                            {{ discount_form.as_p }}
+                                            <button type="submit">Apply Discount</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">Total</td>
+                                    <td  style="text-align:right">{{cart.total_price}}</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{%endblock%}

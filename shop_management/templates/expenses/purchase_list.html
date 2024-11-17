@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block metadescription %}
+    TEAOLOGY EXPENSES
+{% endblock %}
+
+{% block title %}
+    PRODUCTS
+{% endblock %}
+
+{% block content %}
+
+   <!-- expenses/templates/expenses/add_purchase.html -->
+
+  <!-- expenses/templates/expenses/purchase_list.html -->
+
+    <h1>Purchase List</h1>
+    <a href="{% url 'expenses:add_purchase' %}">Add Purchase</a>
+    <table class="table">
+        <tr>
+            <th>Vendor</th>
+            <th>Item</th>
+            <th>Amount</th>
+            <th>Date</th>
+        </tr>
+        {% for purchase in purchases %}
+        <tr>
+            <td>{{ purchase.vendor.name }}</td>
+            <td>{{ purchase.item }}</td>
+            <td>{{ purchase.amount }}</td>
+            <td>{{ purchase.date }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+
+
+{%endblock%}

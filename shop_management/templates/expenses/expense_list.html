@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block metadescription %}
+    TEAOLOGY EXPENSES
+{% endblock %}
+
+{% block title %}
+    PRODUCTS
+{% endblock %}
+
+{% block content %}
+ {% if user.is_authenticated %}
+<a class="btn btn-primary" style="float: right;display: inline-block; margin-right: 10px;" aria-current="page" href="{% url 'expenses:logout' %}">LOGOUT</a>
+{%else%}
+<a class="btn btn-primary" style="float: right;display: inline-block; margin-right: 10px;" aria-current="page" href="{% url 'expenses:login' %}">LOGIN</a>
+{%endif%}
+<!--CARD-->
+<div class="container-fluid">
+    <h3>Expense Types</h3>
+
+    <hr><div class="row">
+        <div class="col-6 col-xs-6 col-sm-4 col-md-3 col-lg-2" style="padding:1px;">
+            <div class="card-group">
+                <a href="{% url 'expenses:purchase_list' %}" class="card card-border-green text-center text-white bg-dark fixed-ratio-lg fixed-ratio-md fixed-ratio-xs">
+                    <img src="{%static 'img/basic_img/purchase.png' %}" class="card-img-top" alt="No image available">
+                    <div class="card-footer">
+                        <h5 class="btn btn-outline-warning">Purchase</h5>
+                    </div>
+
+                </a>
+            </div>
+        </div>
+
+        {% if user.is_authenticated %}
+        <div class="col-6 col-xs-6 col-sm-4 col-md-3 col-lg-2" style="padding:1px;">
+            <div class="card-group">
+                <a href="{% url 'expenses:salary_list' %}" class="card card-border-green text-center text-white bg-dark fixed-ratio-lg fixed-ratio-md fixed-ratio-xs">
+                    <img src="{%static 'img/basic_img/salary.png' %}" class="card-img-top" alt="No image available">
+                    <div class="card-footer">
+                        <h5 class="btn btn-outline-warning">Salary</h5>
+                    </div>
+
+                </a>
+            </div>
+        </div>
+        <div class="col-6 col-xs-6 col-sm-4 col-md-3 col-lg-2" style="padding:1px;">
+            <div class="card-group">
+                <a href="{% url 'expenses:electricity_list' %}" class="card card-border-green text-center text-white bg-dark fixed-ratio-lg fixed-ratio-md fixed-ratio-xs">
+                    <img src="{%static 'img/basic_img/electricity.png' %}" class="card-img-top bg-light" alt="No image available">
+                    <div class="card-footer">
+                        <h5 class="btn btn-outline-warning">Electricity</h5>
+                    </div>
+
+                </a>
+            </div>
+        </div>
+        <div class="col-6 col-xs-6 col-sm-4 col-md-3 col-lg-2" style="padding:1px;">
+            <div class="card-group">
+                <a href="{% url 'expenses:rent_list' %}" class="card card-border-green text-center text-white bg-dark fixed-ratio-lg fixed-ratio-md fixed-ratio-xs">
+                    <img src="{%static 'img/basic_img/rent.png' %}" class="card-img-top bg-light" alt="No image available">
+                    <div class="card-footer">
+                        <h5 class="btn btn-outline-warning">Rent</h5>
+                    </div>
+
+                </a>
+            </div>
+        </div>
+        <div class="col-6 col-xs-6 col-sm-4 col-md-3 col-lg-2" style="padding:1px;">
+            <div class="card-group">
+                <a href="{% url 'expenses:marketing_list' %}" class="card card-border-green text-center text-white bg-dark fixed-ratio-lg fixed-ratio-md fixed-ratio-xs">
+                    <img src="{%static 'img/basic_img/marketing.png' %}" class="card-img-top" alt="No image available">
+                    <div class="card-footer">
+                        <h5 class="btn btn-outline-warning">Marketing</h5>
+                    </div>
+
+                </a>
+            </div>
+        </div>
+        <div class="col-6 col-xs-6 col-sm-4 col-md-3 col-lg-2" style="padding:1px;">
+            <div class="card-group">
+                <a href="{% url 'expenses:equipment_list' %}" class="card card-border-green text-center text-white bg-dark fixed-ratio-lg fixed-ratio-md fixed-ratio-xs">
+                    <img src="{%static 'img/basic_img/equipment.png' %}" class="card-img-top" alt="No image available">
+                    <div class="card-footer">
+                        <h5 class="btn btn-outline-warning">Equipment Purchase</h5>
+                    </div>
+
+                </a>
+            </div>
+        </div>
+        <div class="col-6 col-xs-6 col-sm-4 col-md-3 col-lg-2" style="padding:1px;">
+            <div class="card-group">
+                <a href="{% url 'expenses:employee_register' %}" class="card card-border-green text-center text-white bg-dark fixed-ratio-lg fixed-ratio-md fixed-ratio-xs">
+                    <img src="{%static 'img/basic_img/employee.png' %}" class="card-img-top" alt="No image available">
+                    <div class="card-footer">
+                        <h5 class="btn btn-outline-warning">Employee</h5>
+                    </div>
+
+                </a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<!--CARD-->
+        {% if user.is_authenticated %}
+
+    <h1>Export All Expenses</h1>
+    <form method="post" action="{% url 'expenses:export_expensesdate' %}">
+        {% csrf_token %}
+        <label for="start_date">Start Date:</label>
+        <input type="date" id="start_date" name="start_date">
+        <label for="end_date">End Date:</label>
+        <input type="date" id="end_date" name="end_date" value="{{ today }}">
+        <button type="submit">Download Expenses Report</button>
+    </form>
+        <h1>Export All Expenses</h1> <button onclick="location.href='{% url 'expenses:export_expenses' %}'">Download Expenses Report</button>
+{% endif %}
+{%endblock%}
